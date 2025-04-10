@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+</head>
+
+<body>
+    <form th:action="@{/student_update}" method="post">
+        <input type="hidden" name="id" th:value="${student.id}" />
+
+        Name: <input type="text" name="name" th:value="${student.name}" /><br>
+
+        Gender:
+        <input type="radio" name="gender" value="Male" th:checked="${student.gender == 'male'}"> Male
+        <input type="radio" name="gender" value="Female" th:checked="${student.gender == 'female'}"> Female
+        <br>
+
+        City: <input type="text" name="city" th:value="${student.city}" /><br>
+
+        Skills:<br>
+        <input type="checkbox" name="skill" value="Java" th:checked="${#strings.contains(student.skills, 'Java')}"> Java<br>
+        <input type="checkbox" name="skill" value="Python" th:checked="${#strings.contains(student.skills, 'Python')}"> Python<br>
+        <input type="checkbox" name="skill" value="C++" th:checked="${#strings.contains(student.skills, 'C++')}"> C++<br>
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+
+</html>

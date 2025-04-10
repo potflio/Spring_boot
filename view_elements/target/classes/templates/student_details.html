@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Details</title>
 </head>
+
 <body>
     <table border="1">
         <tr>
@@ -14,16 +16,17 @@
             <th>Skills</th>
             <th>Action</th>
         </tr>
-         <tr th:each="stu : ${students}">
+        <tr th:each="stu : ${students}">
             <td th:text="${stu.name}">Name</td>
             <td th:text="${stu.gender}">Gender</td>
             <td th:text="${stu.city}">City</td>
             <td th:text="${stu.skills}">Skills</td>
-      <!--  <td>
-                    <a th:href="@{'/student_edit?id=' + ${stu.id}}">Edit</a>
-                <a th:href="${stu.id}">Delete</a>
-            </td>-->
-        </tr> 
+            <td>
+                <a th:href="@{'/student_edit?id=' + ${stu.id}}">Edit</a>
+                <a th:href="@{'/student_delete?id=' +${stu.id}}">Delete</a>
+            </td>
+        </tr>
     </table>
 </body>
+
 </html>

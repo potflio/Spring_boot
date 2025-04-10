@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class Stumodel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "Student_id")
     private Long id;
 
@@ -22,7 +23,14 @@ public class Stumodel {
     @Column(name = "Student_skills")
     private String skills;
 
-    // Getters & Setters
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }
