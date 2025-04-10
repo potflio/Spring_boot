@@ -13,16 +13,16 @@
         Name: <input type="text" name="name" th:value="${student.name}" /><br>
 
         Gender:
-        <input type="radio" name="gender" value="Male" th:checked="${student.gender == 'male'}"> Male
-        <input type="radio" name="gender" value="Female" th:checked="${student.gender == 'female'}"> Female
+        <input type="radio" name="gender" value="male" th:checked="${student.gender == 'male'}"> Male
+        <input type="radio" name="gender" value="female" th:checked="${student.gender == 'female'}"> Female
         <br>
 
         City: <input type="text" name="city" th:value="${student.city}" /><br>
 
         Skills:<br>
-        <input type="checkbox" name="skill" value="Java" th:checked="${#strings.contains(student.skills, 'Java')}"> Java<br>
-        <input type="checkbox" name="skill" value="Python" th:checked="${#strings.contains(student.skills, 'Python')}"> Python<br>
-        <input type="checkbox" name="skill" value="C++" th:checked="${#strings.contains(student.skills, 'C++')}"> C++<br>
+        <input type="checkbox" name="skill" value="java" th:checked="${#strings.contains(student.skills, 'java')}"> Java<br>
+        <input type="checkbox" name="skill" value="python" th:checked="${#strings.contains(student.skills, 'python')}"> Python<br>
+        <input type="checkbox" name="skill" value="javascript" th:checked="${#strings.contains(student.skills, 'javascript')}"> js<br>
 
         <button type="submit">Update</button>
     </form>
