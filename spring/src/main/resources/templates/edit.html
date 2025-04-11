@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+</head>
+
+<body>
+    <form action="/student_update" method="post">
+        <input type="hidden" name="id" th:value="${datas.id}" />
+
+        Name: <input type="text" name="name" th:value="${datas.name}" /><br>
+
+        Gender:
+        <input type="radio" name="gender" value="male" th:checked="${datas.gender == 'male'}"> Male
+        <input type="radio" name="gender" value="female" th:checked="${datas.gender == 'female'}"> Female
+        <br>
+
+        City: <input type="text" name="city" th:value="${datas.city}" /><br>
+
+        Skills:<br>
+        <input type="checkbox" name="skill" value="java" th:checked="${#strings.contains(datas.skills, 'java')}"> Java<br>
+        <input type="checkbox" name="skill" value="python" th:checked="${#strings.contains(datas.skills, 'python')}"> Python<br>
+        <input type="checkbox" name="skill" value="javascript" th:checked="${#strings.contains(datas.skills, 'javascript')}"> js<br>
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+
+</html>
