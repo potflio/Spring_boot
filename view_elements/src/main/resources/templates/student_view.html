@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+</head>
+
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>City</th>
+                <th>Skills</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="love : ${datas}">
+                <td th:text="${love.name}">Name</td>
+                <td th:text="${love.gender}">Gender</td>
+                <td th:text="${love.city}">City</td>
+                <td th:text="${love.skills}">Skills</td>
+                <td>
+                    <a th:href="@{'/edit?pass=' + ${love.id}}">Edit</a>
+                    <a th:href="@{'/delete?remove=' +${love.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="student_form">form</a>
+</body>
+
+</html>
