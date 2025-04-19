@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student View</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+
+<body class="container mt-5">
+    <h2 class="mb-4">Student List</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Programming</th>
+                <th>City</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="data : ${datas}">
+                <td th:text="${data.studentName}"></td> 
+                <td th:text="${data.studentAge}"></td>
+                <td th:text="${data.gender}"></td>
+                <td th:text="${data.programmingLanguages}"></td>
+                <td th:text="${data.city}"></td>
+               <td><img th:src="@{/image_user/{path}(path=${data.file})}" class="img-thumbnail" alt="" width="100" height="100">
+</td>
+
+                <td>
+                    <a href="#" class="btn btn-info btn-sm mb-1">View</a>
+                    <a href="#" class="btn btn-warning btn-sm mb-1">Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</body>
+
+</html>
