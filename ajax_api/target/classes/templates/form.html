@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student CRUD</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h2>Add Student</h2>
+    <input type="text" id="studentName" placeholder="Name">
+    <input type="number" id="studentAge" placeholder="Age">
+    <button onclick="addStudent()">Add</button>
+
+    <hr>
+
+    <h2>View All Data</h2>
+    <button onclick="viewStudent()">All Data</button>
+
+    <hr>
+
+    <h2>Filter Students by Age</h2>
+    <input type="number" id="ageInput" placeholder="Age">
+    <button onclick="filterStudents()">Filter</button>
+
+    <hr>
+
+    <h2>Update Student</h2>
+    <input type="number" id="updateId" placeholder="Student ID">
+    <input type="text" id="updateName" placeholder="New Name">
+    <input type="number" id="updateAge" placeholder="New Age">
+    <button onclick="updateStudent()">Update</button>
+
+    <hr>
+
+    <h2>Delete Student</h2>
+    <input type="number" id="deleteId" placeholder="Student ID">
+    <button onclick="deleteStudent()">Delete</button>
+
+    <hr>
+
+    <h2>Student List</h2>
+    <pre id="studentList"></pre>
+
+    <script>
+        $.ajaxSetup({
+            headers: { 'X-CSRFToken': '{{ csrf_token }}' }
+        });
+
+        function addStudent() {
+            const name = $('#studentName').val();
+            const age = $('#studentAge').val();
+            $.ajax({
+                url: '/add/',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ name: name, age: age }),
+                success: function (response) {
+                    console.log('Success:', response);
+                    alert("Student added");
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        function viewStudent() {
+            $.ajax({
+                url: '/list',
+                type: 'GET',
+                success: function (data) {
+                    $('#studentList').text(JSON.stringify(data, null, 2));
+                    console.log('Filtered Students:', data);
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        function filterStudents() {
+            let age = $('#ageInput').val();
+            $.ajax({
+                // Use backticks for string interpolation
+                url: `/students/?age=${age}`,
+                type: 'GET',
+                success: function (data) {
+                    $('#studentList').text(JSON.stringify(data, null, 2));
+                    console.log('Filtered Students:', data);
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        function updateStudent() {
+            const id = $('#updateId').val();
+            const name = $('#updateName').val();
+            const age = $('#updateAge').val();
+            $.ajax({
+                // Use backticks for string interpolation
+                url: `/update/${id}/`,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ name: name, age: age }),
+                success: function (response) {
+                    console.log('Update Success:', response);
+                    alert("Student updated");
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        function deleteStudent() {
+            const id = $('#deleteId').val();
+            $.ajax({
+                // Use backticks for string interpolation
+                url: `/delete/${id}/`,
+                type: 'POST',
+                success: function (response) {
+                    console.log('Deleted:', response);
+                    alert("Student deleted");
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
