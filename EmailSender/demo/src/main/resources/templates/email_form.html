@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Email</title>
+</head>
+<body>
+<h2>Send Email</h2>
+
+<form action="#" th:action="@{/send}" th:object="${emailRequest}" method="post">
+    <label>Email:</label><br>
+    <input type="email" th:field="*{email}" required><br><br>
+
+    <label>Subject:</label><br>
+    <input type="text" th:field="*{subject}" required><br><br>
+
+    <label>Message:</label><br>
+    <textarea th:field="*{message}" rows="5" cols="40" required></textarea><br><br>
+
+    <button type="submit">Send</button>
+</form>
+
+<p th:if="${success}" style="color:green;" th:text="${success}"></p>
+</body>
+</html>
