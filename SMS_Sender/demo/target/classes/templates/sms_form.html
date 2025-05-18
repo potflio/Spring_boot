@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send SMS</title>
+</head>
+<body>
+    <h2>Send SMS</h2>
+    <form method="post" th:action="@{/send}">
+        <label>Mobile Number:</label>
+        <input type="text" name="phone" placeholder="+91xxxxxxxxxx" required><br><br>
+
+        <label>Message:</label>
+        <textarea name="message" required></textarea><br><br>
+
+        <button type="submit">Send</button>
+    </form>
+
+    <p th:text="${success}"></p>
+</body>
+</html>
