@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>External HTML Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery CDN -->
 </head>
 <body>
     <form id="userForm">
@@ -11,24 +12,22 @@
     </form>
 
     <script>
-        document.getElementById('userForm').addEventListener('submit', function(e) {
+        $('#userForm').on('submit', function(e) {
             e.preventDefault();
 
-            const name = document.getElementById('name').value;
+            const name = $('#name').val();
 
-            fetch('http://localhost:8080/api/submit', {
+            $.ajax({
+                url: 'http://localhost:8080/api/submit',
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+                contentType: 'application/json',
+                data: JSON.stringify({ name: name }),
+                success: function(response) {
+                    alert('Data saved: ' + JSON.stringify(response));
                 },
-                body: JSON.stringify({ name: name })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Data saved: ' + JSON.stringify(data));
-            })
-            .catch(error => {
-                console.error('Error:', error);
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
             });
         });
     </script>
